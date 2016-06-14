@@ -1,0 +1,44 @@
+{
+    "destaques": [
+        {
+            "imagem": "http://sedu.es.gov.br/Media/sedu/_Profiles/bc28ec7a/982b8e1d/IMG_7417.JPG?v=636015046942216353",
+            "titulo": "Escolas de Cariacica participam da “Semana Inclusiva”",
+            "resumo": "Considerando a importância da inclusão nas escolas e a reflexão sobre o tema, a Superintendência Regional de Educação (SRE) Cariacica, está promovendo a “Semana Inclusiva”, até …",
+            "orgao": "SEDU",
+            "data": "2016-06-14T11:33:00Z",
+            "id": 1
+        },
+        {
+            "imagem": "http://sedu.es.gov.br/Media/sedu/_Profiles/bc28ec7a/982b8e1d/SAM_0398-2.jpg?v=636015040102469222",
+            "titulo": "Alunos de escolas estaduais assistem a palestras",
+            "resumo": "Os estudantes do curso técnico em Administração da Escola Maringá, localizada na Serra, participaram de uma palestra sobre Equipamento de Proteção Individual (EPI) nas empresas.",
+            "orgao": "SEDU",
+            "data": "2016-06-14T10:51:00Z",
+            "id": 2
+        },
+        {
+            "imagem": "http://saude.es.gov.br/Media/sesa/_Profiles/bc28ec7a/f3f2cd0/HigieneMaos1_290415.jpg?v=636015137431997292",
+            "titulo": "Sesa registra queda nos casos de Síndrome Respiratória Aguda Grave",
+            "resumo": "A Sesa registrou queda nas notificações de Síndrome Respiratória Aguda Grave por semana. A higienização frequente das mãos com água e sabão é uma das medidas de prevenção.",
+            "orgao": "SESA",
+            "data": "2016-06-14T14:37:00Z",
+            "id": 3
+        },
+        {
+            "imagem": "http://saude.es.gov.br/Media/sesa/_Profiles/bc28ec7a/3c3865e5/Quintal_141215-1.jpg?v=636015157454850800",
+            "titulo": "Dengue: quase 90% dos municípios apresentam baixa incidência",
+            "resumo": "Do total de incidência acumulada das últimas quatro semanas, 89,74% das cidades capixabas aparecem com baixa incidência.",
+            "orgao": "SESA",
+            "data": "2016-06-09T16:07:00Z",
+            "id": 4
+        },
+        {
+            "imagem": "http://saude.es.gov.br/Media/sesa/_Profiles/bc28ec7a/10d17b58/_hemoescursos.jpeg?v=636015145857170747",
+            "titulo": "Hemoes coleta 65 bolsas de sangue durante feira de cursos",
+            "resumo": "A unidade móvel do Hemocentro de Vitória (Hemoes) coletou 65 bolsas de sangue durante a 3ª Feira de Cursos do Centro Estadual de Educação Técnica (CEET) Talmo Luiz Silva, em João …",
+            "orgao": "SESA",
+            "data": "2016-06-11T16:17:00Z",
+            "id": 5
+        }
+    ]
+}
