@@ -1,5 +1,4 @@
 var express = require("express");
-var db = require("./db.json");
 
 var app = express();
 
@@ -10,7 +9,8 @@ app.use(function (req, res, next) {
 });
 
 app.get('/destaques', function (req, res) {
-
+    var db = require("./db.json");
+    
     let destaques = db.noticias;
 
     destaques.map(a => {
@@ -22,6 +22,7 @@ app.get('/destaques', function (req, res) {
 
 
 app.get('/noticia/:id', (req, res) => {
+    var db = require("./db.json");
 
     let noticia = db.noticias.filter(a => a.id == req.params.id)[0];
 
@@ -31,6 +32,7 @@ app.get('/noticia/:id', (req, res) => {
 });
 
 app.get('/lista', (req, res) => {
+    var db = require("./db.json");
 
     let noticias = db.noticias;
 
