@@ -13,7 +13,7 @@ app.get('/destaques', function (req, res) {
 
     let destaques = db.noticias;
 
-    noticias.map(a => {
+    destaques.map(a => {
         delete a.corpo;
     });
 
