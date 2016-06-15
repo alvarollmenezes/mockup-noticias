@@ -1,6 +1,9 @@
-var express = require("express");
+let express = require("express");
+let extend = require("extend")
 
-var app = express();
+let dbNoticias = require("./db.json");
+
+let app = express();
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -9,8 +12,8 @@ app.use(function (req, res, next) {
 });
 
 app.get('/destaques', function (req, res) {
-    var db = require("./db.json");
-    
+
+    let db = extend(true, {}, dbNoticias);
     let destaques = db.noticias;
 
     destaques.map(a => {
@@ -22,8 +25,8 @@ app.get('/destaques', function (req, res) {
 
 
 app.get('/noticia/:id', (req, res) => {
-    var db = require("./db.json");
 
+    let db = extend(true, {}, dbNoticias);
     let noticia = db.noticias.filter(a => a.id == req.params.id)[0];
 
     delete noticia.resumo;
@@ -32,8 +35,8 @@ app.get('/noticia/:id', (req, res) => {
 });
 
 app.get('/lista', (req, res) => {
-    var db = require("./db.json");
 
+    let db = extend(true, {}, dbNoticias);
     let noticias = db.noticias;
 
     noticias.map(a => {
