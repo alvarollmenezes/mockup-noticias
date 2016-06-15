@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:5.11.1
+FROM mhart/alpine-node:6.2.1
 
 # add project to build
 COPY src /root/mockup-agenda
