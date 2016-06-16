@@ -6,7 +6,7 @@ let dbNews = require("./db.json");
 let app = express();
 let subApp = express.Router();
 
-subApp.use(function (req, res, next) {
+subApp.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -25,7 +25,7 @@ subApp.get('/', (req, res) => {
     return res.json(news);
 });
 
-subApp.get('/highlights', function (req, res) {
+subApp.get('/highlights', (req, res) => {
 
     let db = extend(true, {}, dbNews);
     let highlights = db.news;
