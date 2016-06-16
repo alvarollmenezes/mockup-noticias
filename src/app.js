@@ -1,55 +1,55 @@
-let express = require("express");
-let extend = require("extend")
+var express = require('express');
 
-let dbNews = require("./db.json");
+var app = express();
 
-let app = express();
-let subApp = express.Router();
-
-subApp.use((req, res, next) => {
+// Enable CORS http://enable-cors.org/server_expressjs.html
+app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
-subApp.get('/', (req, res) => {
+// load our routes
+app = require('./routes/highlights')(app);
+app = require('./routes/home')(app);
 
-    let db = extend(true, {}, dbNews);
-    let news = db.news;
+// error handlers
 
-    news.map(a => {
-        delete a.body;
-        delete a.summary;
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// development error handler
+// will print full error
+if (process.env.NODE_ENV === 'development') {
+    app.use((err, req, res, next) => {
+        res.status(err.status || 500);
+        console.log(err);
+        res.json(
+            {
+                err: err.message,
+                stack: err.stack
+            });
     });
+}
 
-    return res.json(news);
-});
-
-subApp.get('/highlights', (req, res) => {
-
-    let db = extend(true, {}, dbNews);
-    let highlights = db.news;
-
-    highlights.map(a => {
-        delete a.body;
+// production error handler
+// only error message leaked to user
+app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    console.log(err.stack);
+    res.json({
+        err: err.message,
+        fields: []
     });
-
-    return res.json(highlights);
 });
 
+var pathApp = express();
 
-subApp.get('/:id', (req, res) => {
+let path = process.env.REQUEST_PATH || '';
+pathApp.use(path, app)
 
-    let db = extend(true, {}, dbNews);
-    let news = db.news.filter(a => a.id == req.params.id)[0];
-
-    delete news.summary;
-
-    return res.json(news);
-});
-
-let path = process.env.REQUEST_PATH ? process.env.REQUEST_PATH : '';
-app.use(path, subApp);
-
-// Launch server
-app.listen(4243);
+module.exports = pathApp;

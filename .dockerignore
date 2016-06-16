@@ -1,5 +1,0 @@
-# Dependency directory
-*/node_modules
-
-# Google api client_secret (service key)
-*/agendas.json

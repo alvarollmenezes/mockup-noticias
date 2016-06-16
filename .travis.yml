@@ -3,7 +3,7 @@ language: node_js
 services:
   - docker
 script: 
-  docker build -t alvarollmenezes/mockupnoticias . && docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push alvarollmenezes/mockupnoticias
+  docker build -t alvarollmenezes/mockup-noticias . && docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push alvarollmenezes/mockup-noticias
 # deploy:
 #   provider: script
 #   script: docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push alvarollmenezes/mockupagenda
