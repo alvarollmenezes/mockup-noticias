@@ -12,7 +12,7 @@ subApp.use(function (req, res, next) {
     next();
 });
 
-subAppapp.get('/', (req, res) => {
+subApp.get('/', (req, res) => {
 
     let db = extend(true, {}, dbNoticias);
     let noticias = db.noticias;
