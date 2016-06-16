@@ -1,7 +1,7 @@
 let express = require("express");
 let extend = require("extend")
 
-let dbNoticias = require("./db.json");
+let dbNews = require("./db.json");
 
 let app = express();
 let subApp = express.Router();
@@ -14,41 +14,42 @@ subApp.use(function (req, res, next) {
 
 subApp.get('/', (req, res) => {
 
-    let db = extend(true, {}, dbNoticias);
-    let noticias = db.noticias;
+    let db = extend(true, {}, dbNews);
+    let news = db.news;
 
-    noticias.map(a => {
-        delete a.corpo;
-        delete a.resumo;
+    news.map(a => {
+        delete a.body;
+        delete a.summary;
     });
 
-    return res.json(noticias);
+    return res.json(news);
 });
 
 subApp.get('/highlights', function (req, res) {
 
-    let db = extend(true, {}, dbNoticias);
-    let destaques = db.noticias;
+    let db = extend(true, {}, dbNews);
+    let highlights = db.news;
 
-    destaques.map(a => {
-        delete a.corpo;
+    highlights.map(a => {
+        delete a.body;
     });
 
-    return res.json(destaques);
+    return res.json(highlights);
 });
 
 
 subApp.get('/:id', (req, res) => {
 
-    let db = extend(true, {}, dbNoticias);
-    let noticia = db.noticias.filter(a => a.id == req.params.id)[0];
+    let db = extend(true, {}, dbNews);
+    let news = db.news.filter(a => a.id == req.params.id)[0];
 
-    delete noticia.resumo;
+    delete news.summary;
 
-    return res.json(noticia);
+    return res.json(news);
 });
 
-app.use(process.env.REQUEST_PATH, subApp);
+let path = process.env.REQUEST_PATH ? process.env.REQUEST_PATH : '';
+app.use(path, subApp);
 
 // Launch server
 app.listen(4243);
