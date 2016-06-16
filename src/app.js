@@ -25,7 +25,7 @@ subAppapp.get('/', (req, res) => {
     return res.json(noticias);
 });
 
-subApp.get('/destaques', function (req, res) {
+subApp.get('/highlights', function (req, res) {
 
     let db = extend(true, {}, dbNoticias);
     let destaques = db.noticias;
@@ -38,7 +38,7 @@ subApp.get('/destaques', function (req, res) {
 });
 
 
-subApp.get('/noticia/:id', (req, res) => {
+subApp.get('/:id', (req, res) => {
 
     let db = extend(true, {}, dbNoticias);
     let noticia = db.noticias.filter(a => a.id == req.params.id)[0];
