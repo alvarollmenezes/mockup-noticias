@@ -22,7 +22,8 @@ module.exports = () => {
     homeController.getSingle = (req, res) => {
 
         let db = extend(true, {}, dbNews);
-        let news = db.news.filter(a => a.id == req.params.id)[0];
+        var _id = sanitize(req.params.id);
+        let news = db.news.filter(a => a.id == _id)[0];
 
         delete news.summary;
 
