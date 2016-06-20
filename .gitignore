@@ -41,3 +41,4 @@ jspm_packages
 
 # VS Code
 jsconfig.json
+.vscode
