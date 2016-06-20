@@ -18,8 +18,7 @@ module.exports = () => {
         }
 
         // Remove duplicates
-        //return Array.from(new Set(origins));
-        return origins;
+        return Array.from(new Set(origins));
     }
 
     homeController.getList = (req, res) => {
@@ -32,6 +31,8 @@ module.exports = () => {
         dateMax = dateMax.setDate(dateMax.getDate() + 1) - 1;
         const query = req.query.query;
         const origins = normalizeArrayParameter(req.query.origins);
+        const pageNumber = req.query.pageNumber || 1;
+        const pageSize = req.query.pageSize || 10;
 
         news = news.filter(a => {
             let get = true;
@@ -60,6 +61,8 @@ module.exports = () => {
         }).sort((a, b) => {
             return new Date(a.date) - new Date(b.date);
         });
+
+        news = news.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
 
         return res.json(news);
     };
