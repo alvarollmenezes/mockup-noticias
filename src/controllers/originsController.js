@@ -13,8 +13,7 @@ module.exports = () => {
                 return res.json(o);
             })
             .catch(err => {
-                console.log(err);
-                return res.send(err.message);
+                throw err;
             });
     }
 

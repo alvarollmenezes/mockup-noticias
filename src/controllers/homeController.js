@@ -39,8 +39,7 @@ module.exports = () => {
                 return res.json(news);
             })
             .catch(err => {
-                console.log(err);
-                return res.send(err.message);
+                throw err;
             });
     };
 
@@ -51,8 +50,7 @@ module.exports = () => {
                 return res.json(news);
             })
             .catch(err => {
-                console.log(err);
-                return res.send(err.message);
+                throw err;
             });
     };
 
