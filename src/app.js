@@ -12,7 +12,7 @@ app.use((req, res, next) => {
 // load our routes
 app = require('./routes/origins')(app);
 app = require('./routes/highlights')(app);
-app = require('./routes/home')(app);
+//app = require('./routes/home')(app);
 
 // error handlers
 
