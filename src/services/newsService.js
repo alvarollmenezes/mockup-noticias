@@ -63,7 +63,7 @@ module.exports = () => {
             {
                 "sort": [
                     {
-                        "dataPublicacao": "desc"
+                        "dataCriacao": "desc"
                     },
                     "_score"
                 ],
@@ -91,15 +91,15 @@ module.exports = () => {
             const r =
                 {
                     "range": {
-                        "dataPublicacao": new Object()
+                        "dataCriacao": new Object()
                     }
                 };
 
             if (dateMin) {
-                r.range.dataPublicacao.gte = dateMin;
+                r.range.dataCriacao.gte = dateMin;
             }
             if (dateMax) {
-                r.range.dataPublicacao.lte = dateMax;
+                r.range.dataCriacao.lte = dateMax;
             }
 
             body.query.bool.must.push(r);
