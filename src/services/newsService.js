@@ -59,6 +59,13 @@ module.exports = () => {
     };
 
     newsService.getList = function (dateMin, dateMax, query, origins, pageNumber, pageSize) {
+        return new Promise((resolve, reject) => {
+            return resolve(
+                [
+                    { a: 1 }
+                ]);
+        });
+
         const body =
             {
                 "sort": [
@@ -137,6 +144,13 @@ module.exports = () => {
     };
 
     newsService.getSingle = function (id) {
+        return new Promise((resolve, reject) => {
+            return resolve(
+                [
+                    { a: 1 }
+                ]);
+        });
+
         return client.get({
             index: newsIndex,
             type: newsType,
