@@ -28,7 +28,7 @@ module.exports = () => {
 
         return request(options)
             .then(sites => {
-                return sites.map(s => s.sigla);
+                return sites.map(s => s.sigla).sort();
             });
     };
 
