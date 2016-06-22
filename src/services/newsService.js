@@ -49,7 +49,8 @@ module.exports = () => {
                         title: n.titulo,
                         summary: n.resumo,
                         origin: n.siglaSite,
-                        date: n.dataPublicacao,
+                        date: n.dataCriacao,
+                        lastModified: n.dataPublicacao,
                         id: `${n.siglaSite}_${n.noticiaId}`,
                         url: n.urlNoticia
                     };
@@ -127,7 +128,8 @@ module.exports = () => {
                         image: n.urlImagemDestaque,
                         title: n.titulo,
                         origin: n.siglaSite,
-                        date: n.dataPublicacao,
+                        date: n.dataCriacao,
+                        lastModified: n.dataPublicacao,
                         id: a._id,
                         url: n.urlNoticia
                     };
@@ -147,7 +149,8 @@ module.exports = () => {
                     image: n.urlImagemDestaque,
                     title: n.titulo,
                     origin: n.siglaSite,
-                    date: n.dataPublicacao,
+                    date: n.dataCriacao,
+                    lastModified: n.dataPublicacao,
                     id: result._id,
                     body: n.body,
                     url: n.urlNoticia
