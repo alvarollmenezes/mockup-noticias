@@ -1,6 +1,9 @@
-var express = require('express');
+const express = require('express');
+const compress = require('compression');
 
-var app = express();
+let app = express();
+
+//app.use(compress());
 
 // Enable CORS http://enable-cors.org/server_expressjs.html
 app.use((req, res, next) => {

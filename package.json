@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "bluebird": "^3.4.1",
+    "compression": "^1.6.2",
     "debug": "^2.2.0",
     "elasticsearch": "^11.0.1",
     "express": "^4.13.4",

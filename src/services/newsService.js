@@ -8,7 +8,7 @@ const highlightsEndpoint = `${orchardApi}noticias/Getdestaques`;
 
 // ElasticSearch
 const client = new elasticsearch.Client({
-    host: 'http://es.labs.prodest.dcpr.es.gov.br',
+    host: 'http://10.243.9.2:9200',
     log: 'error'
 });
 const newsIndex = 'news';
