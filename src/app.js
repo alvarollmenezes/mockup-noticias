@@ -3,7 +3,7 @@ const compress = require('compression');
 
 let app = express();
 
-//app.use(compress());
+app.use(compress());
 
 // Enable CORS http://enable-cors.org/server_expressjs.html
 app.use((req, res, next) => {
