@@ -1,6 +1,6 @@
 module.exports = app => {
 
-    var originsController = require('../controllers/originsController')();
+    const originsController = require('../controllers/originsController')();
 
     app.get('/origins', originsController.getList);
 

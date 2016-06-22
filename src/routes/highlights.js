@@ -1,6 +1,6 @@
 module.exports = app => {
 
-    var highlightsController = require('../controllers/highlightsController')();
+    const highlightsController = require('../controllers/highlightsController')();
 
     app.get('/highlights', highlightsController.getList);
 

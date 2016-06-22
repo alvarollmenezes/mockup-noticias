@@ -1,4 +1,4 @@
-const extend = require("extend");
+const newsService = require('../services/newsService')();
 
 const dbNews = require("../../data/db.json");
 
@@ -7,15 +7,15 @@ module.exports = () => {
 
     highlightsController.getList = (req, res) => {
 
-        let db = extend(true, {}, dbNews);
-        let highlights = db.news;
-
-        highlights.map(a => {
-            delete a.body;
-        });
-
-        return res.json(highlights);
-    };
+        newsService.getHighlights()
+            .then(o => {
+                return res.json(o);
+            })
+            .catch(err => {
+                console.log(err);
+                return res.send(err.message);
+            });
+    }
 
     return highlightsController;
 };

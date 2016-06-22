@@ -1,4 +1,5 @@
 const extend = require("extend");
+const newsService = require('../services/newsService')();
 
 const dbNews = require("../../data/db.json");
 
@@ -7,13 +8,15 @@ module.exports = () => {
 
     originsController.getList = (req, res) => {
 
-        let origins = dbNews.news.map(n => n.origin).sort();
-    
-        origins = Array.from(new Set(origins));
-
-        return res.json(origins);
+        newsService.getOrigins()
+            .then(o => {
+                return res.json(o);
+            })
+            .catch(err => {
+                console.log(err);
+                return res.send(err.message);
+            });
     }
 
     return originsController;
 };
- 
