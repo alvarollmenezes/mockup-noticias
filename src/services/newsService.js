@@ -33,7 +33,8 @@ module.exports = () => {
             .then(news => {
                 return news.map(n => {
                     return {
-                        image: n.urlImagemDestaque,
+                        image: n.urlImagemDestaqueThumbnail,
+                        imageFull: n.urlImagemDestaque,
                         title: n.titulo,
                         summary: n.resumo,
                         origin: n.siglaSite,
@@ -113,7 +114,8 @@ module.exports = () => {
                 return result.hits.hits.map(a => {
                     var n = a._source;
                     return {
-                        image: n.urlImagemDestaque,
+                        image: n.urlImagemDestaqueThumbnail,
+                        imageFull: n.urlImagemDestaque,
                         title: n.titulo,
                         origin: n.siglaSite,
                         date: n.dataCriacao,
