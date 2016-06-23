@@ -1,7 +1,5 @@
 const newsService = require('../services/newsService')();
 
-const dbNews = require("../../data/db.json");
-
 module.exports = () => {
     var highlightsController = new Object();
 

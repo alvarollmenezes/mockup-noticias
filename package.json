@@ -9,8 +9,6 @@
     "debug": "^2.2.0",
     "elasticsearch": "^11.0.1",
     "express": "^4.13.4",
-    "extend": "^3.0.0",
-    "mongo-sanitize": "^1.0.0",
     "request-promise": "^3.0.0"
   },
   "devDependencies": {},

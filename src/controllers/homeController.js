@@ -1,7 +1,4 @@
-const sanitize = require('mongo-sanitize');
 const newsService = require('../services/newsService')();
-
-const dbNews = require("../../data/db.json");
 
 module.exports = () => {
     var homeController = new Object();

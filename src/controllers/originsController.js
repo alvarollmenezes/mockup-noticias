@@ -1,7 +1,4 @@
-const extend = require("extend");
 const newsService = require('../services/newsService')();
-
-const dbNews = require("../../data/db.json");
 
 module.exports = () => {
     const originsController = new Object();
