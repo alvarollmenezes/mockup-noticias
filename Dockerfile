@@ -3,6 +3,7 @@ FROM mhart/alpine-node:6.2.1
 # add project to build
 COPY src /root/mockup-noticias/src
 COPY package.json /root/mockup-noticias/package.json
+COPY newrelic.json /root/mockup-noticias/newrelic.json
 WORKDIR /root/mockup-noticias
 RUN npm install
 
