@@ -1,3 +1,9 @@
+const config = require('./config/app');
+
+if (config.env === 'production'){
+    require('newrelic');
+}
+
 const express = require('express');
 const compress = require('compression');
 
@@ -28,7 +34,7 @@ app.use((req, res, next) => {
 
 // development error handler
 // will print full error
-if (process.env.NODE_ENV === 'development') {
+if (config.env === 'development') {
     app.use((err, req, res, next) => {
         res.status(err.status || 500);
         console.log(err);
@@ -53,7 +59,7 @@ app.use((err, req, res, next) => {
 
 var pathApp = express();
 
-let path = process.env.REQUEST_PATH || '';
+let path = config.path;
 pathApp.use(path, app)
 
 module.exports = pathApp;

@@ -1,25 +1,13 @@
 const request = require('request-promise');
-const elasticsearch = require('elasticsearch');
-
-// Orchard
-const orchardApi = process.env.ORCHARD_API || 'http://orchard.dchm.es.gov.br/api/';
-const sitesEndpoint = `${orchardApi}noticias/getsitelist`;
-const highlightsEndpoint = `${orchardApi}noticias/Getdestaques`;
-
-// ElasticSearch
-const client = new elasticsearch.Client({
-    host: process.env.ELASTICSEARCH || 'http://10.243.9.4',
-    log: 'error'
-});
-const newsIndex = 'news';
-const newsType = 'news';
+const elasticsearch = require('../config/elasticsearch');
+const orchard = require('../config/orchard');
 
 module.exports = () => {
     var newsService = new Object();
 
     newsService.getOrigins = function () {
         const options = {
-            uri: sitesEndpoint,
+            uri: orchard.sitesEndpoint,
             headers: {
                 'User-Agent': 'Request-Promise'
             },
@@ -34,7 +22,7 @@ module.exports = () => {
 
     newsService.getHighlights = function () {
         const options = {
-            uri: highlightsEndpoint,
+            uri: orchard.highlightsEndpoint,
             headers: {
                 'User-Agent': 'Request-Promise'
             },
@@ -116,9 +104,9 @@ module.exports = () => {
             );
         }
 
-        return client.search({
-            index: newsIndex,
-            type: newsType,
+        return elasticsearch.client.search({
+            index: elasticsearch.newsIndex,
+            type: elasticsearch.newsType,
             body: body
         })
             .then(result => {
@@ -138,9 +126,9 @@ module.exports = () => {
     };
 
     newsService.getSingle = function (id) {
-        return client.get({
-            index: newsIndex,
-            type: newsType,
+        return elasticsearch.client.get({
+            index: elasticsearch.newsIndex,
+            type: elasticsearch.newsType,
             id: id
         })
             .then(result => {

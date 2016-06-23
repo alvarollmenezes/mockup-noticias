@@ -9,6 +9,7 @@
     "debug": "^2.2.0",
     "elasticsearch": "^11.0.1",
     "express": "^4.13.4",
+    "newrelic": "^1.28.1",
     "request-promise": "^3.0.0"
   },
   "devDependencies": {},
