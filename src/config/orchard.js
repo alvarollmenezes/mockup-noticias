@@ -1,5 +1,7 @@
+const orchardApi = process.env.ORCHARD_API || 'http://orchard.dchm.es.gov.br/api/'; 
+
 module.exports = {
-    api: process.env.ORCHARD_API || 'http://orchard.dchm.es.gov.br/api/',
+    api: orchardApi,
     sitesEndpoint: `${orchardApi}noticias/getsitelist`,
     highlightsEndpoint: `${orchardApi}noticias/Getdestaques`
 };
