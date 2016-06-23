@@ -1,2 +1,2 @@
-# mockup-noticias
-Mockup da API de Notícias
+# api-noticias
+API de Notícias

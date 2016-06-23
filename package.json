@@ -1,8 +1,7 @@
 {
-  "name": "mockup-noticias",
+  "name": "api-noticias",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "Api de Notícias",
   "dependencies": {
     "bluebird": "^3.4.1",
     "compression": "^1.6.2",
@@ -18,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alvarollmenezes/mockup-noticias.git"
+    "url": "git+https://github.com/prodest/api-noticias.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alvarollmenezes/mockup-noticias/issues"
+    "url": "https://github.com/prodest/api-noticias/issues"
   },
-  "homepage": "https://github.com/alvarollmenezes/mockup-noticias#readme"
+  "homepage": "https://github.com/prodest/api-noticias#readme"
 }
