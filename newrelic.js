@@ -1,6 +1,6 @@
 'use strict'
 
-const newrelic = require("./config/newrelic");
+const newrelic = require("./src/config/newrelic");
 
 /**
  * New Relic agent configuration.
