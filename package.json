@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Api de Notícias",
   "dependencies": {
+    "apicache": "0.0.14",
     "bluebird": "^3.4.1",
     "compression": "^1.6.2",
+    "cors": "^2.7.1",
     "debug": "^2.2.0",
     "elasticsearch": "^11.0.1",
     "express": "^4.13.4",
