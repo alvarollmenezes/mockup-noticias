@@ -11,7 +11,9 @@
     "newrelic": "^1.28.1",
     "request-promise": "^3.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint-config-prodest": "^1.0.12"
+  },
   "scripts": {
     "start": "node src/bin/www"
   },
