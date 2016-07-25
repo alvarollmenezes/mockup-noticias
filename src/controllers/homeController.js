@@ -3,14 +3,20 @@ const newsService = require( '../services/newsService' )();
 module.exports = () => {
     var homeController = new Object();
 
+    /**
+     *
+     *
+     * @param {any} arrayParam
+     * @returns
+     */
     function normalizeArrayParameter( arrayParam ) {
+        let origins = [];
+
         if ( !arrayParam ) {
             origins = [];
-        }
-        else if ( !Array.isArray( arrayParam ) ) {
+        } else if ( !Array.isArray( arrayParam ) ) {
             origins = [ arrayParam ];
-        }
-        else {
+        } else {
             origins = arrayParam;
         }
 
