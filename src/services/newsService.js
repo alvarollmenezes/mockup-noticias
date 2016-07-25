@@ -1,74 +1,70 @@
-const request = require('request-promise');
-const elasticsearch = require('../config/elasticsearch');
-const orchard = require('../config/orchard');
+const request = require( 'request-promise' );
+const elasticsearch = require( '../config/elasticsearch' );
+const orchard = require( '../config/orchard' );
 
 module.exports = () => {
     var newsService = new Object();
 
-    newsService.getOrigins = function () {
+    newsService.getOrigins = function() {
         const options = {
             uri: orchard.sitesEndpoint,
             headers: {
                 'User-Agent': 'Request-Promise'
             },
             json: true
-        }
+        };
 
-        return request(options)
-            .then(sites => {
-                return sites.map(s => s.sigla).sort();
-            });
+        return request( options )
+            .then( sites => {
+                return sites.map( s => s.sigla ).sort();
+            } );
     };
 
-    newsService.getHighlights = function () {
-        const options = {
-            uri: orchard.highlightsEndpoint,
-            headers: {
-                'User-Agent': 'Request-Promise'
-            },
-            json: true
-        }
-
-        return request(options)
-            .then(news => {
-                return news.map(n => {
-                    return {
-                        image: n.urlImagemDestaqueThumbnail,
-                        imageHighlight: n.urlImagemDestaque,
-                        title: n.titulo,
-                        summary: n.resumo,
-                        origin: n.siglaSite,
-                        date: n.dataCriacao,
-                        lastModified: n.dataPublicacao,
-                        id: `${n.siglaSite}_${n.noticiaId}`,
-                        url: n.urlNoticia
-                    };
-                });
-            });
+    newsService.getHighlights = function() {
+        return elasticsearch.client.search( {
+            index: elasticsearch.newsIndex,
+            type: elasticsearch.newsType
+        } )
+        .then( result => {
+            return result.hits.hits.map( a => {
+                var n = a._source;
+                return {
+                    image: n.urlImagemDestaqueThumbnail,
+                    imageHighlight: n.urlImagemDestaque,
+                    title: n.titulo,
+                    summary: n.resumo,
+                    origin: n.siglaSite,
+                    date: n.dataCriacao,
+                    lastModified: n.dataPublicacao,
+                    id: `${n.siglaSite}_${n.noticiaId}`,
+                    url: n.urlNoticia
+                };
+            } );
+        } );
     };
 
-    newsService.getList = function (dateMin, dateMax, query, origins, pageNumber, pageSize) {
+    newsService.getList = function( dateMin, dateMax, query, origins, pageNumber, pageSize ) {
         const body =
             {
-                "sort": [
+                'sort': [
                     {
-                        "dataCriacao": "desc"
+                        'dataCriacao': 'desc'
                     },
-                    "_score"
+                    '_score'
                 ],
-                "from": (pageNumber - 1) * pageSize,
-                "size": pageSize,
-                "query": {
-                    "bool": {
-                        "must": [
+                'from': ( pageNumber - 1 ) * pageSize,
+                'size': pageSize,
+                'query': {
+                    'bool': {
+                        'must': [
                             {
-                                "match": {
-                                    "siglaSite": origins.join(' ')
+                                'match': {
+                                    'siglaSite': origins.join( ' ' )
                                 }
                             },
                             {
-                                "match": {
-                                    "publicado": true
+                                'match': {
+                                    'publicado': true
                                 }
                             }
                         ]
@@ -76,42 +72,42 @@ module.exports = () => {
                 }
             };
 
-        if (dateMin || dateMax) {
+        if ( dateMin || dateMax ) {
             const r =
                 {
-                    "range": {
-                        "dataCriacao": new Object()
+                    'range': {
+                        'dataCriacao': new Object()
                     }
                 };
 
-            if (dateMin) {
+            if ( dateMin ) {
                 r.range.dataCriacao.gte = dateMin;
             }
-            if (dateMax) {
+            if ( dateMax ) {
                 r.range.dataCriacao.lte = dateMax;
             }
 
-            body.query.bool.must.push(r);
+            body.query.bool.must.push( r );
         }
 
 
-        if (query) {
+        if ( query ) {
             body.query.bool.must.push(
                 {
-                    "query_string": {
-                        "query": query
+                    'query_string': {
+                        'query': query
                     }
                 }
             );
         }
 
-        return elasticsearch.client.search({
+        return elasticsearch.client.search( {
             index: elasticsearch.newsIndex,
             type: elasticsearch.newsType,
             body: body
-        })
-            .then(result => {
-                return result.hits.hits.map(a => {
+        } )
+            .then( result => {
+                return result.hits.hits.map( a => {
                     var n = a._source;
                     return {
                         image: n.urlImagemDestaqueThumbnail,
@@ -123,17 +119,17 @@ module.exports = () => {
                         id: a._id,
                         url: n.urlNoticia
                     };
-                });
-            });
+                } );
+            } );
     };
 
-    newsService.getSingle = function (id) {
-        return elasticsearch.client.get({
+    newsService.getSingle = function( id ) {
+        return elasticsearch.client.get( {
             index: elasticsearch.newsIndex,
             type: elasticsearch.newsType,
             id: id
-        })
-            .then(result => {
+        } )
+            .then( result => {
                 const n = result._source;
                 return {
                     image: n.urlImagemDestaque,
@@ -145,8 +141,8 @@ module.exports = () => {
                     body: n.body,
                     url: n.urlNoticia
                 };
-            });
-    }
+            } );
+    };
 
     return newsService;
-}
+};

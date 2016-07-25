@@ -6,6 +6,7 @@
     "apicache": "0.0.14",
     "bluebird": "^3.4.1",
     "compression": "^1.6.2",
+    "cors": "^2.7.1",
     "debug": "^2.2.0",
     "elasticsearch": "^11.0.1",
     "express": "^4.13.4",
@@ -13,7 +14,9 @@
     "redis": "^2.6.2",
     "request-promise": "^3.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint-config-prodest": "^1.0.12"
+  },
   "scripts": {
     "start": "node src/bin/www"
   },
