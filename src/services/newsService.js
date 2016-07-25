@@ -22,8 +22,8 @@ module.exports = () => {
 
     newsService.getHighlights = function() {
         return elasticsearch.client.search( {
-            index: elasticsearch.newsIndex,
-            type: elasticsearch.newsType
+            index: elasticsearch.highlightsIndex,
+            type: elasticsearch.highlightsType
         } )
         .then( result => {
             return result.hits.hits.map( a => {
