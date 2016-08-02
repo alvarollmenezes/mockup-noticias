@@ -1,4 +1,4 @@
-const redis = require('redis');
+const redis = require( 'redis' );
 
 const port = process.env.REDIS_PORT || 80;
 const host = process.env.REDIS_HOST || 'redis.api.dcpr.es.gov.br';
@@ -8,5 +8,5 @@ module.exports = {
     port: port,
     host: host,
     db: db,
-    client: redis.createClient(port, host, { db: db })
+    client: redis.createClient( port, host, { db: db } )
 };
