@@ -1,4 +1,4 @@
-const orchardApi = process.env.ORCHARD_API || 'http://orchard.dchm.es.gov.br/api/'; 
+const orchardApi = process.env.ORCHARD_API || 'http://orchard.dchm.es.gov.br/api/';
 
 module.exports = {
     api: orchardApi,
