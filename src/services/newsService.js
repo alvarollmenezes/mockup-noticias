@@ -22,7 +22,7 @@ module.exports = () => {
             type: elasticsearch.newsType,
             body: body
         } ).then( result => {
-            return result.aggregations.siglas.buckets.map( a => a.key ).sort();
+            return result.aggregations.siglas.buckets.map( a => a.key.toUpperCase() ).sort();
         } );
     };
 
