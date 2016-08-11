@@ -1,23 +1,29 @@
-const request = require( 'request-promise' );
 const elasticsearch = require( '../config/elasticsearch' );
-const orchard = require( '../config/orchard' );
 
 module.exports = () => {
     var newsService = new Object();
 
     newsService.getOrigins = function() {
-        const options = {
-            uri: orchard.sitesEndpoint,
-            headers: {
-                'User-Agent': 'Request-Promise'
-            },
-            json: true
-        };
+        const body =
+            {
+                size: 0,
+                aggs: {
+                    siglas: {
+                        terms: {
+                            field: 'siglaSite',
+                            size: 0
+                        }
+                    }
+                }
+            };
 
-        return request( options )
-            .then( sites => {
-                return sites.map( s => s.sigla ).sort();
-            } );
+        return elasticsearch.client.search( {
+            index: elasticsearch.newsIndex,
+            type: elasticsearch.newsType,
+            body: body
+        } ).then( result => {
+            return result.aggregations.siglas.buckets.map( a => a.key ).sort();
+        } );
     };
 
     newsService.getHighlights = function() {
