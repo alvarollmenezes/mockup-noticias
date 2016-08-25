@@ -27,9 +27,20 @@ module.exports = () => {
     };
 
     newsService.getHighlights = function() {
+        const body =
+            {
+                'sort': [
+                    {
+                        'dataCriacao': 'desc'
+                    },
+                    '_score'
+                ]
+            };
+
         return elasticsearch.client.search( {
             index: elasticsearch.highlightsIndex,
-            type: elasticsearch.highlightsType
+            type: elasticsearch.highlightsType,
+            body: body
         } )
         .then( result => {
             return result.hits.hits.map( a => {
