@@ -3,9 +3,9 @@ language: node_js
 services:
   - docker
 script: 
-  docker build -t prodest/api-noticias .
+  - DOCKER_IMAGE=prodest/api-noticias SERVICE_NAME=api-noticias RANCHER_URL=http://cloud.datacenter.es.gov.br.local/v1/projects/1a4680 RANCHER_STACK=api RANCHER_COMPOSE_URL=http://cloud.datacenter.es.gov.br.local/v1/projects/1a4680/environments/1e56/composeconfig
 deploy:
   provider: script
-  script: docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push prodest/api-noticias
+    script: /bin/sh .deploy.sh
   on:
     branch: master
