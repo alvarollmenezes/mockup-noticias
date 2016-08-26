@@ -8,6 +8,6 @@ script:
   /bin/sh .travis.sh
 deploy:
   provider: script
-    script: /bin/sh .deploy.sh
+  script: /bin/sh .deploy.sh
   on:
     branch: master
