@@ -5,6 +5,4 @@ module.exports = app => {
     app.get( '/', homeController.getList );
 
     app.get( '/:id', homeController.getSingle );
-
-    return app;
 };

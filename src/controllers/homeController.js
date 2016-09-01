@@ -24,7 +24,7 @@ module.exports = () => {
         return Array.from( new Set( origins ) );
     }
 
-    homeController.getList = ( req, res ) => {
+    homeController.getList = ( req, res, next ) => {
 
         const dateMin = req.query.dateMin ? new Date( req.query.dateMin ) : null;
         let dateMax = req.query.dateMax ? new Date( req.query.dateMax ) : null;
@@ -42,18 +42,18 @@ module.exports = () => {
                 return res.json( news );
             } )
             .catch( err => {
-                throw err;
+                next( err );
             } );
     };
 
-    homeController.getSingle = ( req, res ) => {
+    homeController.getSingle = ( req, res, next ) => {
 
         newsService.getSingle( req.params.id )
             .then( news => {
                 return res.json( news );
             } )
             .catch( err => {
-                throw err;
+                next( err );
             } );
     };
 
