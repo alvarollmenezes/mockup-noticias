@@ -10,7 +10,7 @@ module.exports = () => {
                 aggs: {
                     siglas: {
                         terms: {
-                            field: 'siglaSite',
+                            field: 'siglaPublica',
                             size: 0
                         }
                     }
@@ -50,7 +50,7 @@ module.exports = () => {
                     imageHighlight: n.urlImagemDestaque,
                     title: n.titulo,
                     summary: n.resumo,
-                    origin: n.siglaSite.toUpperCase(),
+                    origin: n.siglaPublica.toUpperCase(),
                     date: n.dataCriacao,
                     lastModified: n.dataPublicacao,
                     id: `${n.siglaSite}_${n.noticiaId}`,
@@ -76,7 +76,7 @@ module.exports = () => {
                         'must': [
                             {
                                 'match': {
-                                    'siglaSite': origins.join( ' ' )
+                                    'siglaPublica': origins.join( ' ' )
                                 }
                             },
                             {
@@ -130,7 +130,7 @@ module.exports = () => {
                         image: n.urlImagemDestaqueThumbnail,
                         imageHighlight: n.urlImagemDestaque,
                         title: n.titulo,
-                        origin: n.siglaSite.toUpperCase(),
+                        origin: n.siglaPublica.toUpperCase(),
                         date: n.dataCriacao,
                         lastModified: n.dataPublicacao,
                         id: a._id,
@@ -151,7 +151,7 @@ module.exports = () => {
                 return {
                     image: n.urlImagemDestaque,
                     title: n.titulo,
-                    origin: n.siglaSite.toUpperCase(),
+                    origin: n.siglaPublica.toUpperCase(),
                     date: n.dataCriacao,
                     lastModified: n.dataPublicacao,
                     id: result._id,
