@@ -1,3 +1,4 @@
+const configMiddleware = require( './config/apiMiddleware' );
 const config = require( './config/app' );
 
 if ( config.env === 'production' ) {
@@ -16,9 +17,9 @@ app.use( apiMiddleware( {
         jwtPublicKey: config.jwtPublicKey
     },
     limit: {
-        max: 300,
-        duration: 10 * 60 * 1000,
-        perSecond: 10,
+        max: configMiddleware.max,
+        duration: configMiddleware.duration * 60 * 1000,
+        perSecond: configMiddleware.perSecond,
         redisUrl: config.redisUrl,
         apiId: 'api-noticias'
     }
