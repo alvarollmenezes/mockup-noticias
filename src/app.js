@@ -10,6 +10,8 @@ const apiMiddleware = require( 'node-mw-api-prodest' ).middleware;
 
 let app = express();
 
+require( './routes/status' )( app );
+
 app.use( apiMiddleware( {
     compress: true,
     cors: true,
