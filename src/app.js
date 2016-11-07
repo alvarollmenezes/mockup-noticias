@@ -15,16 +15,16 @@ require( './routes/status' )( app );
 app.use( apiMiddleware( {
     compress: true,
     cors: true,
-    authentication: {
-        jwtPublicKey: config.jwtPublicKey
-    },
-    limit: {
-        max: configMiddleware.max,
-        duration: configMiddleware.duration * 60 * 1000,
-        perSecond: configMiddleware.perSecond,
-        redisUrl: config.redisUrl,
-        apiId: 'api-noticias'
-    }
+    // authentication: {
+    //     jwtPublicKey: config.jwtPublicKey
+    // },
+    // limit: {
+    //     max: configMiddleware.max,
+    //     duration: configMiddleware.duration * 60 * 1000,
+    //     perSecond: configMiddleware.perSecond,
+    //     redisUrl: config.redisUrl,
+    //     apiId: 'api-noticias'
+    // }
 } ) );
 
 // load our routes
