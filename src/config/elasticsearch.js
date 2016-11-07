@@ -7,6 +7,8 @@ module.exports = {
     newsType: 'news',
     highlightsIndex: 'highlights',
     highlightsType: 'highlights',
+    lastUpdateIndex: 'news-last-update',
+    lastUpdateType: 'news-last-update',
     host: es_host,
     client: new elasticsearch.Client( {
         host: es_host,

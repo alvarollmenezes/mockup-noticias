@@ -161,5 +161,26 @@ module.exports = () => {
             } );
     };
 
+    newsService.getLastUpdate = function( ) {
+        const body =
+            {
+                sort: [
+                    {
+                        date: 'desc'
+                    }
+                ],
+                size: 1
+            };
+
+        return elasticsearch.client.search( {
+            index: elasticsearch.lastUpdateIndex,
+            type: elasticsearch.lastUpdateType,
+            body: body
+        } )
+        .then( result => {
+            return new Date( result.hits.hits[ 0 ]._source.date );
+        } );
+    };
+
     return newsService;
 };
