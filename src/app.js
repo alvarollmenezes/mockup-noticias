@@ -15,6 +15,7 @@ require( './routes/status' )( app );
 app.use( apiMiddleware( {
     compress: true,
     cors: true,
+    log: true
     // authentication: {
     //     jwtPublicKey: config.jwtPublicKey
     // },
