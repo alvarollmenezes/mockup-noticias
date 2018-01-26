@@ -1,13 +1,16 @@
-require: sudo
+dist: trusty
 language: node_js
+node_js:
+  - 6
 services:
   - docker
-env: 
-  - DOCKER_IMAGE=prodest/api-noticias SERVICE_NAME=api-noticias RANCHER_URL=http://cloud.datacenter.es.gov.br.local/v1/projects/1a4680 RANCHER_STACK=api RANCHER_COMPOSE_URL=http://cloud.datacenter.es.gov.br.local/v1/projects/1a4680/environments/1e56/composeconfig
+env:
+  - DOCKER_IMAGE=prodest/api-noticias:${TRAVIS_COMMIT:0:7}
 script: 
-  /bin/sh .travis.sh
+  - scripts/travis.sh
 deploy:
   provider: script
-  script: /bin/sh .deploy.sh
+  skip_cleanup: true
+  script: scripts/deploy.sh api api api-noticias
   on:
     branch: master
