@@ -3,23 +3,33 @@ const elasticsearch = require( '../config/elasticsearch' );
 module.exports = () => {
     var newsService = new Object();
 
+    elasticsearch.client.ping({
+        // ping usually has a 3000ms timeout
+        requestTimeout: 1000
+      }, function (error) {
+        if (error) {
+          console.trace('elasticsearch fora do ar.');
+        } else {
+          console.log('Conectado corretamente.');
+        }
+      });
+
     newsService.getOrigins = function() {
-        const body =
-            {
-                size: 0,
-                aggs: {
-                    siglas: {
-                        terms: {
-                            field: 'siglaPublica',
-                            size: 0
-                        }
+        const body = 
+        {            
+            size: 0,
+            aggs: {
+                siglas: {
+                    terms: {
+                        field: 'siglaPublica.keyword'
                     }
                 }
-            };
+            }                     
+        };
 
         return elasticsearch.client.search( {
             index: elasticsearch.newsIndex,
-            type: elasticsearch.newsType,
+            // type: elasticsearch.newsType,
             body: body
         } ).then( result => {
             return result.aggregations.siglas.buckets.map( a => a.key.toUpperCase() ).sort();

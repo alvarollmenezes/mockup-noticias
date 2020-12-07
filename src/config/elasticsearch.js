@@ -12,6 +12,7 @@ module.exports = {
     host: es_host,
     client: new elasticsearch.Client( {
         host: es_host,
-        log: 'error'
+        log: 'error',
+        apiVersion: '6.8'
     } )
 };
